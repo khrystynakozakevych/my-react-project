@@ -1,12 +1,27 @@
-export default function Alert({
-  alertStyles = {
-    margin: 8,
-    padding: '12px 16px',
-    borderRadius: 4,
-    backgroundColor: 'gray',
-    color: 'white',
-  },
-  children,
-}) {
-  return <p style={alertStyles}>{children}</p>;
+import css from './Alert.module.css';
+import clsx from 'clsx';
+
+export default function Alert({ variant, outlined, elevated, children }) {
+  //   const classNames = ['alert', variant];
+
+  //   if (outlined) {
+  //     classNames.push('is-outlined');
+  //   }
+
+  //   if (elevated) {
+  //     classNames.push('is-elevated');
+  //   }
+
+  return (
+    <p
+      className={clsx(
+        css.alert,
+        css[variant],
+        outlined && css.isOutlined,
+        elevated && css.isElevated
+      )}
+    >
+      {children}
+    </p>
+  );
 }
